@@ -1,5 +1,6 @@
 package page;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,9 +20,6 @@ public class CloudHomePage extends BasePage {
     @FindBy(xpath = "//input[@role='searchbox']")
     private WebElement searchBox;
 
-    @FindBy (xpath = "//button[@type='submit']")
-    private WebElement allResultsButton;
-
     public CloudHomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -37,7 +35,7 @@ public class CloudHomePage extends BasePage {
         clickThis(searchButton);
         clickThis(searchBox);
         searchBox.sendKeys(terms);
-        clickThis(allResultsButton);
+        searchBox.sendKeys(Keys.ENTER);
         return new SearchResultsPage(driver, terms);
     }
 }
